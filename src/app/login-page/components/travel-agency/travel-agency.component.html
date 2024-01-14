@@ -1,0 +1,28 @@
+<form [formGroup]="formGroup" (keydown.enter)="register()">
+  <mat-form-field>
+    <mat-label>ΑΦΜ</mat-label>
+    <input autocomplete="username" formControlName="afm" matInput type="text"/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Κωδικός</mat-label>
+    <input autocomplete="new-password" formControlName="password" matInput [type]="getPasswordType()"/>
+    <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
+      <span class="{{getVisibilityIcon()}}"></span>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Επωνυμία</mat-label>
+    <input formControlName="name" matInput type="text"/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ιδιοκτήτης</mat-label>
+    <input formControlName="owner" matInput type="text"/>
+  </mat-form-field>
+</form>
+
+<button class="button" mat-button [disabled]="isFormInvalid()" (click)="register()">
+  Εγγραφή
+</button>

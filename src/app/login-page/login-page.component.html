@@ -3,35 +3,27 @@
     <div class="login-title">Καλώς ήλθατε</div>
 
     <div class="buttons-section">
-      <div (click)="changeSection('login')">Είσοδος</div>
+      <div class="auth-button" [style.color]="setButtonColor('login')" (click)="changeSection('login')">
+        Είσοδος
+      </div>
 
-      <div (click)="changeSection('register')">Εγγραφή</div>
+      <div class="auth-button" [style.color]="setButtonColor('register')" (click)="changeSection('register')">
+        Εγγραφή
+      </div>
     </div>
 
-    <ng-container *ngIf="showSection('login')">
-      <form [formGroup]="formGroup" (keydown.enter)="login()">
-        <mat-form-field hideRequiredMarker>
-          <mat-label>Όνομα Χρήστη</mat-label>
-          <input autocomplete="username" formControlName="afm" matInput type="text"/>
-        </mat-form-field>
+    <app-login *ngIf="showSection('login')"></app-login>
 
-        <mat-form-field hideRequiredMarker>
-          <mat-label>Κωδικός Χρήστη</mat-label>
-          <input autocomplete="new-password" formControlName="password" matInput [type]="getPasswordType()"/>
-          <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
-            <span class="{{getVisibilityIcon()}}"></span>
-          </button>
-        </mat-form-field>
-      </form>
+    <ng-container *ngIf="showSection('register')">
+      <mat-radio-group [(ngModel)]="userType">
+        <mat-radio-button value="citizen">Πολίτης</mat-radio-button>
+        <mat-radio-button value="travelAgency">Ταξιδιωτικό Γραφείο</mat-radio-button>
+      </mat-radio-group>
 
-      <div class="error-message">{{ errorMessage }}</div>
+      <app-citizen *ngIf="showUserType('citizen')"></app-citizen>
 
-      <button class="button" mat-button [disabled]="isFormInvalid()" (click)="login()">
-        Είσοδος
-      </button>
+      <app-travel-agency *ngIf="showUserType('travelAgency')"></app-travel-agency>
     </ng-container>
-
-    <ng-container *ngIf="showSection('register')">test</ng-container>
   </div>
 
   <div class="right-section"></div>

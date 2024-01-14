@@ -50,7 +50,7 @@ $app-theme: mat.define-light-theme((
 @include mat.all-component-themes($app-theme);
 
 $app-typography: mat.define-typography-config(
-  $font-family: '"Zen Maru Gothic Regular", "Helvetica Neue", sans-serif'
+  $font-family: '"Manrope", "Helvetica Neue", sans-serif'
 );
 
 @include mat.all-component-typographies($app-typography);
