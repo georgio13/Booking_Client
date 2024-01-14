@@ -1,4 +1,275 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --swatch1: #1c2026;
+  --swatch2: #ffffff;
+  --swatch3: #28ffbb;
+  --swatch4: #1c2026c7;
+  --swatch5: #f44336;
+  --swatch6: #ffb826;
+  --swatch7: #2d3136;
+  --swatch8: #757575;
+  --swatch9: #323232;
+  --swatch10: #2d313666;
+  --swatch11: #ffffff00;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  background: var(--swatch1);
+  font-family: 'Manrope', sans-serif;
+  height: 100vh;
+  margin: 0;
+}
+
+.card,
+.first-card,
+.second-card,
+.third-card {
+  background-color: var(--swatch8);
+  border: 1px solid var(--swatch8);
+  padding: 10px;
+}
+
+.card-title {
+  color: var(--swatch3);
+  font-size: 16px;
+  font-weight: 900;
+  width: 100%;
+
+  .mat-divider {
+    border-top-color: var(--swatch3);
+    border-top-width: 2px !important;
+    margin-top: 5px !important;
+  }
+}
+
+.centered-flex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.color-red {
+  color: var(--swatch5);
+}
+
+.color-white {
+  color: var(--swatch2);
+}
+
+.custom-button {
+  align-items: center;
+  background: transparent;
+  border-radius: 40px;
+  border: 2px solid var(--swatch3);
+  color: var(--swatch3);
+  display: flex;
+  font-family: 'Zen Maru Gothic Bold', sans-serif;
+  gap: 8px;
+  justify-content: center;
+  padding: 8px;
+  transition: 0.3s all ease-in;
+
+  .icons {
+    display: block;
+    font-size: 18px;
+    height: 18px;
+    line-height: 18px;
+    width: 18px;
+  }
+}
+
+.custom-button:disabled {
+  background: rgb(117, 117, 117);
+  border-color: rgb(117, 117, 117);
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.custom-button:not([disabled]):hover {
+  background: var(--swatch3);
+  color: var(--swatch1);
+  cursor: pointer;
+
+  .icons {
+    color: var(--swatch1) !important;
+  }
+}
+
+.custom-button-max {
+  width: 60px;
+}
+
+.custom-filled-button {
+  @extend .custom-button;
+  background: var(--swatch3);
+  color: var(--swatch1);
+}
+
+.custom-filled-button:hover {
+  background: rgba(40, 255, 187, 0.85) !important;
+  border-color: rgba(40, 255, 187, 0.85) !important;
+}
+
+.custom-no-filled-button {
+  @extend .custom-button;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  color: var(--swatch2);
+}
+
+.custom-no-filled-button:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: var(--swatch2) !important;
+}
+
+.disabled-input {
+  background-color: transparent;
+  border: none;
+  font-family: 'Zen Maru Gothic Regular', sans-serif;
+  height: 32px;
+  padding: 2px 0;
+  width: calc(100% - 4px);
+}
+
+.flex {
+  display: flex;
+}
+
+.font18 {
+  font-size: 18px !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  mat-checkbox,
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.full-width-element {
+  width: 100% !important;
+}
+
+input {
+  color: var(--swatch2) !important;
+  font-size: 16px !important;
+}
+
+.justify-content-between {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  color: var(--swatch2);
+  display: inherit;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+.level1-filter-dialog-container .mat-dialog-container {
+  border-radius: 0 !important;
+}
+
+.level1-filter-dialog-container .mat-dialog-content {
+  max-height: none;
+}
+
+.level1-filter-dialog-container .mat-dialog-title {
+  justify-content: center;
+  position: relative;
+}
+
+.margin-bottom20 {
+  margin-bottom: 20px !important;
+}
+
+.margin-top20 {
+  margin-top: 20px !important;
+}
+
+.mobile-game {
+  height: 100vh !important;
+  position: absolute;
+  top: 0;
+  width: 100vw !important;
+  z-index: 100;
+}
+
+.no-data-message {
+  color: var(--swatch2);
+  font-size: 24px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.settings-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.smaller-white-icons {
+  color: var(--swatch2);
+  font-size: 18px;
+  height: 18px;
+  line-height: 18px;
+  width: 18px;
+}
+
+table {
+  width: 100%;
+}
+
+.title {
+  color: var(--swatch3);
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 10px;
+
+  a {
+    font-style: italic;
+    text-decoration: var(--swatch3) underline;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+}
+
+.username-bold {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-70 {
+  width: 70%;
+}
+
+.width-30 {
+  width: 30%;
+}
+
+/* Charts */
+.active .legend-label-text {
+  color: var(--swatch3) !important;
+}
+
+.legend-title-text {
+  color: var(--swatch3);
+}
+
+text {
+  fill: var(--swatch3);
+}

@@ -13,6 +13,7 @@ export class LoginPageComponent {
   public errorMessage: string;
   public hidePassword: boolean;
   public formGroup: FormGroup;
+  private section: string;
 
   constructor(private loadingService: LoadingService,
               private router: Router,
@@ -23,7 +24,12 @@ export class LoginPageComponent {
       password: new FormControl('', Validators.required),
       afm: new FormControl('', Validators.required)
     });
+    this.section = 'login';
     this.loadingService.hide();
+  }
+
+  public changeSection(mode: string): void {
+    this.section = mode;
   }
 
   public getPasswordType(): string {
@@ -50,6 +56,10 @@ export class LoginPageComponent {
     } finally {
       this.loadingService.hide();
     }
+  }
+
+  public showSection(section: string): boolean {
+    return this.section === section;
   }
 
   public toggleVisibility($event: MouseEvent): void {
