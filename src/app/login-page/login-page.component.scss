@@ -1,0 +1,78 @@
+.button {
+  background: var(--swatch3);
+  border-radius: 40px;
+  font-family: 'Zen Maru Gothic Bold', sans-serif;
+  font-size: 16px;
+  height: 48px;
+}
+
+.error-message {
+  color: var(--swatch5);
+  font-family: 'Zen Maru Gothic Bold', sans-serif;
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-section {
+  background-color: rgba(28, 32, 38, 0.85);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px;
+  z-index: 2;
+}
+
+.login-container {
+  background-size: cover !important;
+  background: url("../../assets/images/Background.jpg") center no-repeat;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.login-title {
+  color: var(--swatch2);
+  font-family: 'Zen Maru Gothic Black', sans-serif;
+  font-size: 30px;
+}
+
+mat-icon {
+  color: var(--swatch2);
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: var(--swatch1);
+}
+
+.right-section {
+  width: 70%;
+}
+
+@media only screen and (max-width: 768px) {
+  .right-section {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .login-container {
+    background: url("../../assets/images/Background.jpg") center no-repeat;
+  }
+
+  .right-section {
+    height: 100vh;
+    left: 0;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,25 @@
+.back-section {
+  align-items: center;
+  bottom: 60px;
+  color: var(--swatch2);
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  gap: 20px;
+  justify-content: center;
+  margin: auto;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+
+  .right-section {
+    background-size: cover !important;
+    background: url("/assets/images/Background.jpg") center no-repeat;
+    width: 100%;
+  }
+}

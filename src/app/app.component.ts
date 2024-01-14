@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {LoadingService} from './shared/services/loading.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'Booking_Client';
+export class AppComponent implements OnInit {
+  public loading: boolean;
+
+  constructor(private loadingService: LoadingService) {
+    this.loading = false;
+  }
+
+  public async ngOnInit(): Promise<any> {
+    this.loadingService.events.subscribe((event: any): void => {
+      setTimeout(() => {
+        this.loading = (event === 'show');
+      });
+    });
+  }
 }

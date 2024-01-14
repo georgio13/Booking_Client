@@ -1,0 +1,28 @@
+<div class="login-container">
+  <div class="left-section">
+    <div class="login-title">Καλώς ήλθατε</div>
+
+    <form [formGroup]="formGroup" (keydown.enter)="login()">
+      <mat-form-field hideRequiredMarker>
+        <mat-label>Όνομα Χρήστη</mat-label>
+        <input autocomplete="username" formControlName="afm" matInput type="text"/>
+      </mat-form-field>
+
+      <mat-form-field hideRequiredMarker>
+        <mat-label>Κωδικός Χρήστη</mat-label>
+        <input autocomplete="new-password" formControlName="password" matInput [type]="getPasswordType()"/>
+        <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
+          <span class="{{getVisibilityIcon()}}"></span>
+        </button>
+      </mat-form-field>
+    </form>
+
+    <div class="error-message">{{ errorMessage }}</div>
+
+    <button class="button" mat-button [disabled]="isFormInvalid()" (click)="login()">
+      Είσοδος
+    </button>
+  </div>
+
+  <div class="right-section"></div>
+</div>
