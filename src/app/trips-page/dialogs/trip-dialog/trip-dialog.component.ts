@@ -1,3 +1,4 @@
+import * as dayjs from 'dayjs';
 import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormService} from '../../services/form.service';
@@ -8,6 +9,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class TripDialogComponent {
   public formGroup: FormGroup;
+  public maximumDate: Date;
+  public minimumDate: Date;
 
   constructor(public formService: FormService,
               private matDialogRef: MatDialogRef<TripDialogComponent>,
@@ -24,6 +27,12 @@ export class TripDialogComponent {
       // schedule: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
       // travelAgency: new FormControl('', Validators.required)
+    });
+    this.formGroup.get('endDate').valueChanges.subscribe((value) => {
+      this.maximumDate = new Date(dayjs(value).subtract(1, 'day').format('YYYY-MM-DD'));
+    });
+    this.formGroup.get('startDate').valueChanges.subscribe((value) => {
+      this.minimumDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
     });
   }
 
