@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormService} from '../../../trips-page/services/form.service';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {UserService} from '../../../shared/services/user.service';
 
@@ -11,12 +12,13 @@ export class CitizenComponent {
   public hidePassword: boolean;
   public formGroup: FormGroup;
 
-  constructor(private loadingService: LoadingService,
+  constructor(public formService: FormService,
+              private loadingService: LoadingService,
               private userService: UserService) {
     this.hidePassword = true;
     this.formGroup = new FormGroup({
       afm: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.email, Validators.required]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)

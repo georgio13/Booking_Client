@@ -17,7 +17,6 @@ export class ErrorDialogComponent implements OnInit {
 
   public ngOnInit(): void {
     this.matDialogRef.disableClose = true;
-    this.matDialogRef.updateSize('600px');
   }
 
   public closeDialog(): void {

@@ -16,69 +16,17 @@ export class FormService {
   public setErrorMessage(formField: string, formGroup: FormGroup, type?: string): string {
     const errors = formGroup.get(formField).errors;
     switch (type) {
-      case 'confirmPassword':
-        if (errors.required) {
-          return 'formService.required';
+      case 'email':
+        if (formGroup.get(formField).errors.required) {
+          return 'Υποχρεωτικό πεδίο.';
         }
-        if (errors.pattern) {
-          return 'formService.password';
-        }
-        if (errors.equalPassword) {
-          return 'formService.equalPassword';
-        }
-        break;
-      case 'unequalPassword':
-        if (errors.required) {
-          return 'formService.required';
-        }
-        if (errors.pattern || errors.equalPassword) {
-          return 'formService.equalPassword';
-        }
-        break;
-      case 'credits':
-        if (errors.required) {
-          return 'formService.required';
-        }
-        if (errors.max) {
-          return 'formService.maxCredits';
-        }
-        if (errors.min) {
-          return 'formService.minCredits';
-        }
-        break;
-      case 'password':
-        if (errors.required) {
-          return 'formService.required';
-        }
-        if (errors.pattern) {
-          return 'formService.password';
-        }
-        break;
-      case 'percent':
-        if (errors.required) {
-          return 'formService.required';
-        }
-        if (errors.max) {
-          return 'formService.maxParticipationPercent';
-        }
-        if (errors.min) {
-          return 'formService.minParticipationPercent';
-        }
-        break;
-      case 'username':
-        if (errors.required) {
-          return 'formService.required';
-        }
-        if (errors.pattern) {
-          return 'formService.username';
-        }
-        if (errors.uniqueUsername) {
-          return 'formService.uniqueUsername';
+        if (formGroup.get(formField).errors.email) {
+          return 'Λάθος τύπος email.';
         }
         break;
       default:
         if (errors.required) {
-          return 'Υποχρεωτικό πεδίο';
+          return 'Υποχρεωτικό πεδίο.';
         }
         break;
     }

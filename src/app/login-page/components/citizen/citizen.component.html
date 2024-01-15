@@ -2,6 +2,9 @@
   <mat-form-field>
     <mat-label>ΑΦΜ</mat-label>
     <input autocomplete="username" formControlName="afm" matInput type="text"/>
+    <mat-error *ngIf="formService.isFormFieldValid('afm', formGroup)">
+      {{ formService.setErrorMessage('afm', formGroup) }}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -10,21 +13,33 @@
     <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
       <span class="{{getVisibilityIcon()}}"></span>
     </button>
+    <mat-error *ngIf="formService.isFormFieldValid('password', formGroup)">
+      {{ formService.setErrorMessage('password', formGroup) }}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Όνομα</mat-label>
     <input formControlName="firstName" matInput type="text"/>
+    <mat-error *ngIf="formService.isFormFieldValid('firstName', formGroup)">
+      {{ formService.setErrorMessage('firstName', formGroup) }}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Επώνυμο</mat-label>
     <input formControlName="lastName" matInput type="text"/>
+    <mat-error *ngIf="formService.isFormFieldValid('lastName', formGroup)">
+      {{ formService.setErrorMessage('lastName', formGroup) }}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input formControlName="email" matInput type="email"/>
+    <mat-error *ngIf="formService.isFormFieldValid('email', formGroup)">
+      {{ formService.setErrorMessage('email', formGroup, 'email') }}
+    </mat-error>
   </mat-form-field>
 </form>
 

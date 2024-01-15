@@ -84,7 +84,7 @@ import {NgModule} from '@angular/core';
         closeOnNavigation: true,
         disableClose: false,
         hasBackdrop: true,
-        width: '1200px'
+        width: '600px'
       }
     }
   ]
