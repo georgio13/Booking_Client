@@ -3,7 +3,7 @@
     <mat-label>ΑΦΜ</mat-label>
     <input autocomplete="username" formControlName="afm" matInput type="text"/>
     <mat-error *ngIf="formService.isFormFieldValid('afm', formGroup)">
-      {{ formService.setErrorMessage('afm', formGroup) }}
+      {{ formService.setErrorMessage('afm', formGroup, 'vatNumber') }}
     </mat-error>
   </mat-form-field>
 

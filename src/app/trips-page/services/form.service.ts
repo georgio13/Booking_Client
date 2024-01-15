@@ -24,6 +24,20 @@ export class FormService {
           return 'Λάθος τύπος email.';
         }
         break;
+      case 'vatNumber':
+        if (errors?.required) {
+          return 'Υποχρεωτικό πεδίο.';
+        }
+        if (errors?.minlength) {
+          return 'Συμπληρώστε 9 ψηφία.';
+        }
+        if (errors?.invalidVatNumber) {
+          return 'Λάθος μορφή Α.Φ.Μ..';
+        }
+        if (errors?.uniqueVatNumber) {
+          return 'Υπάρχει εταιρεία με το ίδιο Α.Φ.Μ..';
+        }
+        break;
       default:
         if (errors.required) {
           return 'Υποχρεωτικό πεδίο.';

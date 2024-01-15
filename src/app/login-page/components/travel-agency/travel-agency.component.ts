@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormService} from '../../../trips-page/services/form.service';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {UserService} from '../../../shared/services/user.service';
+import {VatNumberValidators} from '../../../shared/services/vat-number.validators';
 
 @Component({
   selector: 'app-travel-agency',
@@ -14,10 +15,15 @@ export class TravelAgencyComponent {
 
   constructor(public formService: FormService,
               private loadingService: LoadingService,
-              private userService: UserService) {
+              private userService: UserService,
+              private vatNumberValidators: VatNumberValidators) {
     this.hidePassword = true;
     this.formGroup = new FormGroup({
-      afm: new FormControl('', Validators.required),
+      afm: new FormControl('', [
+        Validators.minLength(9),
+        Validators.required,
+        this.vatNumberValidators.invalidVatNumber
+      ], this.vatNumberValidators.uniqueVatNumber('')),
       name: new FormControl('', Validators.required),
       owner: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)

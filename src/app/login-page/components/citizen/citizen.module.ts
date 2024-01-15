@@ -4,6 +4,7 @@ import {FormService} from '../../../trips-page/services/form.service';
 import {MaterialModule} from '../../../shared/material.module';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {VatNumberValidators} from '../../../shared/services/vat-number.validators';
 
 @NgModule({
   declarations: [CitizenComponent],
@@ -13,7 +14,10 @@ import {ReactiveFormsModule} from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [FormService]
+  providers: [
+    FormService,
+    VatNumberValidators
+  ]
 })
 export class CitizenModule {
 }

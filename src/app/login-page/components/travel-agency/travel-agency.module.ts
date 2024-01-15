@@ -4,6 +4,7 @@ import {MaterialModule} from '../../../shared/material.module';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TravelAgencyComponent} from './travel-agency.component';
+import {VatNumberValidators} from '../../../shared/services/vat-number.validators';
 
 @NgModule({
   declarations: [TravelAgencyComponent],
@@ -13,7 +14,10 @@ import {TravelAgencyComponent} from './travel-agency.component';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [FormService]
+  providers: [
+    FormService,
+    VatNumberValidators
+  ]
 })
 export class TravelAgencyModule {
 }
