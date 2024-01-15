@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {LoadingService} from '../shared/services/loading.service';
 
 @Component({
   styleUrls: ['./login-page.component.scss'],
@@ -9,9 +8,9 @@ export class LoginPageComponent {
   private section: string;
   public userType: string;
 
-  constructor(private loadingService: LoadingService) {
+  constructor() {
     this.section = 'login';
-    this.loadingService.hide();
+    this.userType = 'citizen';
   }
 
   public changeSection(mode: string): void {

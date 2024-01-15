@@ -27,6 +27,7 @@ export class UserService {
       await this.logoutFunction();
     }
   }
+
   public async login(user: any): Promise<any> {
     try {
       return await this.databaseService.postRequest(user, `${this.serviceModel}/login`);
@@ -39,5 +40,21 @@ export class UserService {
     this.user = null;
     this.sessionStorageService.clear();
     await this.router.navigate(['login']);
+  }
+
+  public async registerCitizen(user: any): Promise<any> {
+    try {
+      return await this.databaseService.postRequest(user, `${this.serviceModel}/registerCitizen`);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async registerTravelAgency(user: any): Promise<any> {
+    try {
+      return await this.databaseService.postRequest(user, `${this.serviceModel}/registerTravelAgency`);
+    } catch (error) {
+      throw error;
+    }
   }
 }

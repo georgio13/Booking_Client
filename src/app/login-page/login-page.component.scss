@@ -1,24 +1,3 @@
-.button {
-  background: var(--swatch3);
-  border-radius: 40px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  height: 48px;
-}
-
-.error-message {
-  color: var(--swatch5);
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .login-container {
   background-size: cover !important;
   background: url("../../assets/images/Background.jpg") center no-repeat;
@@ -72,10 +51,6 @@ form {
 
 mat-icon {
   color: var(--swatch2);
-}
-
-.mat-mdc-button:not(:disabled) {
-  color: var(--swatch1);
 }
 
 @media only screen and (max-width: 768px) {

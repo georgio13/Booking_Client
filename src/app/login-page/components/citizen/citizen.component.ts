@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {UserService} from '../../../shared/services/user.service';
 
@@ -13,15 +12,14 @@ export class CitizenComponent {
   public formGroup: FormGroup;
 
   constructor(private loadingService: LoadingService,
-              private router: Router,
               private userService: UserService) {
     this.hidePassword = true;
     this.formGroup = new FormGroup({
       afm: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      surname: new FormControl('', Validators.required)
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 
@@ -38,13 +36,9 @@ export class CitizenComponent {
   }
 
   public async register(): Promise<any> {
-    try {
-      this.loadingService.show();
-      await this.userService.login(this.formGroup.value);
-      await this.router.navigate(['trips']);
-    } finally {
-      this.loadingService.hide();
-    }
+    this.loadingService.show();
+    await this.userService.registerCitizen(this.formGroup.value);
+    this.loadingService.hide();
   }
 
   public toggleVisibility($event: MouseEvent): void {
