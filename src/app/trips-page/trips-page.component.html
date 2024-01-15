@@ -1,6 +1,6 @@
 <div>Διαθέσιμες Εκδρομές</div>
 
-<button mat-button>Προσθήκη Εκδρομής</button>
+<button mat-button (click)="openTripDialog()">Προσθήκη Εκδρομής</button>
 
 <table mat-table [dataSource]="trips">
   <ng-container matColumnDef="availableSeats">

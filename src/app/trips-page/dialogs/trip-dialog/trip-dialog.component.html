@@ -13,16 +13,31 @@
     <mat-form-field>
       <mat-label>Αναχώρηση Τόπος</mat-label>
       <input formControlName="depLocation" matInput type="text"/>
+      <mat-error *ngIf="formService.isFormFieldValid('depLocation', formGroup)">
+        {{ formService.setErrorMessage('depLocation', formGroup) }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Προορισμός Τόπος</mat-label>
       <input formControlName="destLocation" matInput type="text"/>
+      <mat-error *ngIf="formService.isFormFieldValid('destLocation', formGroup)">
+        {{ formService.setErrorMessage('destLocation', formGroup) }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Προορισμός Τόπος</mat-label>
-      <input formControlName="destLocation" matInput type="text"/>
+      <mat-label>Ημερομηνία Έναρξης</mat-label>
+      <input formControlName="startDate" matInput [matDatepicker]="picker1">
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ημερομηνία Λήξης</mat-label>
+      <input formControlName="endDate" matInput [matDatepicker]="picker2">
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
   </form>
 </mat-dialog-content>
