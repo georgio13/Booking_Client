@@ -13,7 +13,8 @@ export class UserService {
   constructor(private databaseService: DatabaseService,
               private router: Router,
               private sessionStorageService: SessionStorageService) {
-    this.serviceModel = 'user';
+    // this.serviceModel = 'user';
+    this.serviceModel = '';
   }
 
   public async getMe(reload?: boolean): Promise<any> {
@@ -30,7 +31,7 @@ export class UserService {
 
   public async login(user: any): Promise<any> {
     try {
-      return await this.databaseService.postRequest(user, `${this.serviceModel}/login`);
+      return await this.databaseService.postRequest(user, `${this.serviceModel}login`);
     } catch (error) {
       throw error;
     }
@@ -44,7 +45,7 @@ export class UserService {
 
   public async registerCitizen(user: any): Promise<any> {
     try {
-      return await this.databaseService.postRequest(user, `${this.serviceModel}/registerCitizen`);
+      return await this.databaseService.postRequest(user, `${this.serviceModel}register/citizen`);
     } catch (error) {
       throw error;
     }
@@ -52,7 +53,7 @@ export class UserService {
 
   public async registerTravelAgency(user: any): Promise<any> {
     try {
-      return await this.databaseService.postRequest(user, `${this.serviceModel}/registerTravelAgency`);
+      return await this.databaseService.postRequest(user, `${this.serviceModel}register/travel-agency`);
     } catch (error) {
       throw error;
     }

@@ -14,7 +14,8 @@ export class DatabaseService {
   constructor(private httpClient: HttpClient,
               private router: Router,
               private sessionStorageService: SessionStorageService) {
-    this.baseURL = `${environment.apiURL}/api`;
+    // this.baseURL = `${environment.apiURL}/api`;
+    this.baseURL = `${environment.apiURL}`;
   }
 
   public async deleteRequest(url: string): Promise<any> {
