@@ -48,9 +48,9 @@
 
     <mat-form-field>
       <mat-label>Μέγιστος Αριθμός Συμμετοχών</mat-label>
-      <input formControlName="maxNumOfParticipants" matInput type="text"/>
+      <input formControlName="maxNumOfParticipants" mask="9*" matInput type="text"/>
       <mat-error *ngIf="formService.isFormFieldValid('maxNumOfParticipants', formGroup)">
-        {{ formService.setErrorMessage('maxNumOfParticipants', formGroup) }}
+        {{ formService.setErrorMessage('maxNumOfParticipants', formGroup, 'integer') }}
       </mat-error>
     </mat-form-field>
   </form>

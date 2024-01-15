@@ -12,6 +12,7 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
 import {MaterialModule} from './shared/material.module';
 import {NgModule} from '@angular/core';
 import {NotFoundPageComponent} from './errors/not-found-page/not-found-page.component';
+import {provideEnvironmentNgxMask} from 'ngx-mask';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -29,6 +30,7 @@ import {NotFoundPageComponent} from './errors/not-found-page/not-found-page.comp
     MaterialModule
   ],
   providers: [
+    provideEnvironmentNgxMask(),
     {provide: MAT_DATE_LOCALE, useValue: 'el-GR'},
     {provide: LOCALE_ID, useValue: 'el'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},

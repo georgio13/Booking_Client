@@ -16,7 +16,11 @@ export class TripDialogComponent {
       depLocation: new FormControl('', Validators.required),
       destLocation: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
-      maxNumOfParticipants: new FormControl('', Validators.required),
+      maxNumOfParticipants: new FormControl('', [
+        Validators.required,
+        Validators.max(2147483647),
+        Validators.min(0)
+      ]),
       // schedule: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
       // travelAgency: new FormControl('', Validators.required)

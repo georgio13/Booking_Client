@@ -17,24 +17,35 @@ export class FormService {
     const errors = formGroup.get(formField).errors;
     switch (type) {
       case 'email':
-        if (formGroup.get(formField).errors.required) {
+        if (errors.required) {
           return 'Υποχρεωτικό πεδίο.';
         }
-        if (formGroup.get(formField).errors.email) {
+        if (errors.email) {
           return 'Λάθος τύπος email.';
         }
         break;
-      case 'vatNumber':
-        if (errors?.required) {
+      case 'integer':
+        if (errors.required) {
           return 'Υποχρεωτικό πεδίο.';
         }
-        if (errors?.minlength) {
+        if (errors.max) {
+          return 'Πρέπει να είναι μικρότερο από 2.147.483.647.';
+        }
+        if (errors.min) {
+          return 'Πρέπει να είναι μεγαλύτερο από 0.';
+        }
+        break;
+      case 'vatNumber':
+        if (errors.required) {
+          return 'Υποχρεωτικό πεδίο.';
+        }
+        if (errors.minlength) {
           return 'Συμπληρώστε 9 ψηφία.';
         }
-        if (errors?.invalidVatNumber) {
+        if (errors.invalidVatNumber) {
           return 'Λάθος μορφή Α.Φ.Μ..';
         }
-        if (errors?.uniqueVatNumber) {
+        if (errors.uniqueVatNumber) {
           return 'Υπάρχει εταιρεία με το ίδιο Α.Φ.Μ..';
         }
         break;
