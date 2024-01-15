@@ -31,6 +31,9 @@
       <input formControlName="startDate" matInput [matDatepicker]="picker1">
       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
+      <mat-error *ngIf="formService.isFormFieldValid('startDate', formGroup)">
+        {{ formService.setErrorMessage('startDate', formGroup) }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -38,6 +41,17 @@
       <input formControlName="endDate" matInput [matDatepicker]="picker2">
       <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
+      <mat-error *ngIf="formService.isFormFieldValid('endDate', formGroup)">
+        {{ formService.setErrorMessage('endDate', formGroup) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Μέγιστος Αριθμός Συμμετοχών</mat-label>
+      <input formControlName="maxNumOfParticipants" matInput type="text"/>
+      <mat-error *ngIf="formService.isFormFieldValid('maxNumOfParticipants', formGroup)">
+        {{ formService.setErrorMessage('maxNumOfParticipants', formGroup) }}
+      </mat-error>
     </mat-form-field>
   </form>
 </mat-dialog-content>

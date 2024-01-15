@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 
 @Component({
+  styleUrls: ['./trips-page.component.scss'],
   templateUrl: './trips-page.component.html'
 })
 export class TripsPageComponent implements OnInit {

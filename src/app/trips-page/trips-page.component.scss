@@ -1,0 +1,15 @@
+.trips-container {
+  margin: auto;
+  padding: 40px 0;
+  width: 1200px;
+
+  .add-button {
+    margin: 20px 0;
+  }
+
+  .title {
+    color: var(--swatch3);
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
