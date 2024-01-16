@@ -6,6 +6,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {SessionStorageService} from '../shared/services/session-storage.service';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import * as dayjs from 'dayjs';
 
 @Component({
   styleUrls: ['./trips-page.component.scss'],
@@ -13,6 +15,9 @@ import {TripService} from './services/trip.service';
 })
 export class TripsPageComponent implements OnInit {
   public displayedColumns: string[];
+  public formGroup: FormGroup;
+  public maximumDate: Date;
+  public minimumDate: Date;
   public trips: any[];
   private user: any;
 
@@ -27,6 +32,20 @@ export class TripsPageComponent implements OnInit {
       'endDate',
       'availableSeats'
     ];
+    this.formGroup = new FormGroup({
+      depLoc: new FormControl(''),
+      destLoc: new FormControl(''),
+      enddt: new FormControl(''),
+      startdt: new FormControl('')
+    });
+    this.formGroup.get('enddt').valueChanges.subscribe((value) => {
+      setTimeout(() => {
+        this.maximumDate = new Date(dayjs(value).subtract(1, 'day').format('YYYY-MM-DD'));
+      }, 0);
+    });
+    this.formGroup.get('startdt').valueChanges.subscribe((value) => {
+      this.minimumDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
+    });
     this.user = JSON.parse(this.sessionStorageService.getObject('token'));
     if (this.showColumn('citizen')) {
       this.displayedColumns.push('travelAgency', 'actions');
@@ -63,6 +82,12 @@ export class TripsPageComponent implements OnInit {
         await this.updateTrips();
       }
     });
+  }
+
+  public async searchTrips(): Promise<any> {
+    this.loadingService.show();
+    this.trips = await this.tripService.searchTrips(this.formGroup.value);
+    this.loadingService.hide();
   }
 
   public showColumn(role: string): boolean {

@@ -38,4 +38,19 @@ export class TripService {
       throw error;
     }
   }
+
+  public async searchTrips(query: any): Promise<any> {
+    try {
+      const user = JSON.parse(this.sessionStorageService.getObject('token'));
+      for (const key in query) {
+        if (query[key] === '') {
+          delete query[key];
+        }
+      }
+      const url = this.databaseService.formatURL(query, `${this.serviceModel}${user.afm}/search`);
+      return await this.databaseService.getRequest(url);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
