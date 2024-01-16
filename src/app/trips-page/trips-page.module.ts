@@ -1,3 +1,4 @@
+import {BookingDialogModule} from './dialogs/booking-dialog/booking-dialog.module';
 import {CommonModule} from '@angular/common';
 import {LayoutGuard} from '../guards/layout.guard';
 import {MaterialModule} from '../shared/material.module';
@@ -9,6 +10,7 @@ import {TripsPageRoutingModule} from './trips-page-routing.module';
 @NgModule({
   declarations: [TripsPageComponent],
   imports: [
+    BookingDialogModule,
     CommonModule,
     MaterialModule,
     TripDialogModule,
