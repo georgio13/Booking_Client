@@ -1,0 +1,21 @@
+<div mat-dialog-title>
+  <span>Έξοδος</span>
+
+  <span>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </span>
+</div>
+
+<mat-dialog-content>
+  Είστε σίγουροι πως θέλετε να αποσυνδεθείτε;
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Κλείσιμο</button>
+
+  <button mat-flat-button color="primary" (click)="logout()">
+    Έξοδος
+  </button>
+</mat-dialog-actions>

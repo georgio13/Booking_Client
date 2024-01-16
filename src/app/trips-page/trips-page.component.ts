@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingService} from '../shared/services/loading.service';
+import {LogoutDialogComponent} from './dialogs/logout-dialog/logout-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {Router} from '@angular/router';
 import {SessionStorageService} from '../shared/services/session-storage.service';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
-import {UserService} from '../shared/services/user.service';
 
 @Component({
   styleUrls: ['./trips-page.component.scss'],
@@ -18,10 +17,8 @@ export class TripsPageComponent implements OnInit {
 
   constructor(private loadingService: LoadingService,
               private matDialog: MatDialog,
-              private router: Router,
               private sessionStorageService: SessionStorageService,
-              private tripService: TripService,
-              private userService: UserService) {
+              private tripService: TripService) {
     this.displayedColumns = [
       'depLocation',
       'destLocation',
@@ -41,12 +38,6 @@ export class TripsPageComponent implements OnInit {
     await this.updateTrips();
   }
 
-  public async logout(): Promise<any> {
-    await this.userService.logout();
-    this.sessionStorageService.clear();
-    await this.router.navigate(['login']);
-  }
-
   public openBookingDialog(trip: any): void {
     const dialogReference = this.matDialog.open(TripDialogComponent, {
       data: {
@@ -58,6 +49,10 @@ export class TripsPageComponent implements OnInit {
         await this.updateTrips();
       }
     });
+  }
+
+  public async openLogoutDialog(): Promise<any> {
+    this.matDialog.open(LogoutDialogComponent);
   }
 
   public openTripDialog(): void {
