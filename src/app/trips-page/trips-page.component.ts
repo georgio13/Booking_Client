@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingService} from '../shared/services/loading.service';
 import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
 import {SessionStorageService} from '../shared/services/session-storage.service';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
+import {UserService} from '../shared/services/user.service';
 
 @Component({
   styleUrls: ['./trips-page.component.scss'],
@@ -16,8 +18,10 @@ export class TripsPageComponent implements OnInit {
 
   constructor(private loadingService: LoadingService,
               private matDialog: MatDialog,
+              private router: Router,
               private sessionStorageService: SessionStorageService,
-              private tripService: TripService) {
+              private tripService: TripService,
+              private userService: UserService) {
     this.displayedColumns = [
       'depLocation',
       'destLocation',
@@ -35,6 +39,12 @@ export class TripsPageComponent implements OnInit {
 
   public async ngOnInit(): Promise<any> {
     await this.updateTrips();
+  }
+
+  public async logout(): Promise<any> {
+    await this.userService.logout();
+    this.sessionStorageService.clear();
+    await this.router.navigate(['login']);
   }
 
   public openBookingDialog(trip: any): void {

@@ -47,8 +47,8 @@
     <ng-container *ngIf="showColumn('citizen')" matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Ενέργειες</th>
       <td mat-cell *matCellDef="let row;">
-        <button mat-icon-button matTooltip="Κράτηση" (click)="openBookingDialog(row)">
-          <mat-icon>favorite</mat-icon>
+        <button color="primary" mat-icon-button matTooltip="Κράτηση" (click)="openBookingDialog(row)">
+          <mat-icon>card_travel</mat-icon>
         </button>
       </td>
     </ng-container>
@@ -57,3 +57,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
+
+<button class="close-button" color="primary" mat-icon-button matTooltip="Έξοδος" (click)="logout()">
+  <mat-icon>logout</mat-icon>
+</button>
