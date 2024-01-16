@@ -32,7 +32,9 @@ export class TripDialogComponent {
       startDate: new FormControl('', Validators.required)
     });
     this.formGroup.get('endDate').valueChanges.subscribe((value) => {
-      this.maximumDate = new Date(dayjs(value).subtract(1, 'day').format('YYYY-MM-DD'));
+      setTimeout(() => {
+        this.maximumDate = new Date(dayjs(value).subtract(1, 'day').format('YYYY-MM-DD'));
+      }, 0);
     });
     this.formGroup.get('startDate').valueChanges.subscribe((value) => {
       this.minimumDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));

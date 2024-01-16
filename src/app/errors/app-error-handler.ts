@@ -18,6 +18,11 @@ export class AppErrorHandler implements ErrorHandler {
     this.ngZone.run(() => {
       if (!this.dialogReference) {
         this.dialogReference = this.matDialog.open(ErrorDialogComponent);
+        this.dialogReference.afterClosed().subscribe((result: any) => {
+          if (result) {
+            this.dialogReference = null;
+          }
+        });
       }
     });
   }

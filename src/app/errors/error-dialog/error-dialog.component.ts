@@ -20,6 +20,6 @@ export class ErrorDialogComponent implements OnInit {
   }
 
   public closeDialog(): void {
-    this.matDialogRef.close();
+    this.matDialogRef.close('success');
   }
 }

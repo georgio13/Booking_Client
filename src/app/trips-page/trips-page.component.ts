@@ -31,7 +31,7 @@ export class TripsPageComponent implements OnInit {
 
   public openTripDialog(): void {
     const dialogReference = this.matDialog.open(TripDialogComponent);
-    dialogReference.afterOpened().subscribe(async (result: any): Promise<any> => {
+    dialogReference.afterClosed().subscribe(async (result) => {
       if (result) {
         this.trips = await this.tripService.getTrips();
       }
