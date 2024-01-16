@@ -53,6 +53,9 @@
         {{ formService.setErrorMessage('maxNumOfParticipants', formGroup, 'integer') }}
       </mat-error>
     </mat-form-field>
+
+    <mat-label>Πρόγραμμα*</mat-label>
+    <ckeditor [editor]="editor" formControlName="schedule"></ckeditor>
   </form>
 </mat-dialog-content>
 

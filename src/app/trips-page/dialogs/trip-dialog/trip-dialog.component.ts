@@ -1,4 +1,5 @@
 import * as dayjs from 'dayjs';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormService} from '../../services/form.service';
@@ -8,10 +9,12 @@ import {SnackbarService} from '../../services/snackbar.service';
 import {TripService} from '../../services/trip.service';
 
 @Component({
+  styleUrls: ['./trip-dialog.component.scss'],
   templateUrl: './trip-dialog.component.html'
 })
 export class TripDialogComponent {
   public formGroup: FormGroup;
+  public editor: any;
   public maximumDate: Date;
   public minimumDate: Date;
 
@@ -21,6 +24,7 @@ export class TripDialogComponent {
               private snackbarService: SnackbarService,
               private tripService: TripService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.editor = ClassicEditor;
     this.formGroup = new FormGroup({
       depLocation: new FormControl('', Validators.required),
       destLocation: new FormControl('', Validators.required),
@@ -30,7 +34,7 @@ export class TripDialogComponent {
         Validators.max(2147483647),
         Validators.min(0)
       ]),
-      // schedule: new FormControl('', Validators.required),
+      schedule: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required)
     });
     this.formGroup.get('endDate').valueChanges.subscribe((value) => {
@@ -53,9 +57,7 @@ export class TripDialogComponent {
 
   public async submitTrip(): Promise<any> {
     this.loadingService.show();
-    let trip = this.formGroup.value;
-    trip.schedule = 'test';
-    await this.tripService.insertTrip(trip);
+    await this.tripService.insertTrip(this.formGroup.value);
     this.loadingService.hide();
     this.snackbarService.showSnackbar('Η εκδρομή καταχωρήθηκε με επιτυχία!');
     this.matDialogRef.close('success');
