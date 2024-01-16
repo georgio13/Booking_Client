@@ -2,7 +2,9 @@ import * as dayjs from 'dayjs';
 import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormService} from '../../services/form.service';
+import {LoadingService} from '../../../shared/services/loading.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {TripService} from '../../services/trip.service';
 
 @Component({
   templateUrl: './trip-dialog.component.html'
@@ -13,7 +15,9 @@ export class TripDialogComponent {
   public minimumDate: Date;
 
   constructor(public formService: FormService,
+              private loadingService: LoadingService,
               private matDialogRef: MatDialogRef<TripDialogComponent>,
+              private tripService: TripService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.formGroup = new FormGroup({
       depLocation: new FormControl('', Validators.required),
@@ -25,8 +29,7 @@ export class TripDialogComponent {
         Validators.min(0)
       ]),
       // schedule: new FormControl('', Validators.required),
-      startDate: new FormControl('', Validators.required),
-      // travelAgency: new FormControl('', Validators.required)
+      startDate: new FormControl('', Validators.required)
     });
     this.formGroup.get('endDate').valueChanges.subscribe((value) => {
       this.maximumDate = new Date(dayjs(value).subtract(1, 'day').format('YYYY-MM-DD'));
@@ -44,7 +47,12 @@ export class TripDialogComponent {
     return this.formGroup.invalid;
   }
 
-  public submitTrip(): void {
-    this.matDialogRef.close(this.formGroup.value);
+  public async submitTrip(): Promise<any> {
+    this.loadingService.show();
+    let trip = this.formGroup.value;
+    trip.schedule = 'test';
+    await this.tripService.insertTrip(trip);
+    this.loadingService.hide();
+    this.matDialogRef.close('success');
   }
 }
