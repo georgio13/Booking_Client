@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormService} from '../../services/form.service';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {SnackbarService} from '../../services/snackbar.service';
 
 @Component({
   templateUrl: './booking-dialog.component.html'
@@ -15,6 +16,7 @@ export class BookingDialogComponent {
               public formService: FormService,
               private loadingService: LoadingService,
               private matDialogRef: MatDialogRef<BookingDialogComponent>,
+              private snackbarService: SnackbarService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.formGroup = new FormGroup({
       numOfPeopleBooked: new FormControl('', [
@@ -39,6 +41,7 @@ export class BookingDialogComponent {
     booking.tripID = this.data.trip.id;
     await this.bookingService.insertBooking(booking);
     this.loadingService.hide();
+    this.snackbarService.showSnackbar('Η κράτηση ολοκληρώθηκε με επιτυχία!');
     this.matDialogRef.close('success');
   }
 }

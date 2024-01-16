@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormService} from '../../services/form.service';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {SnackbarService} from '../../services/snackbar.service';
 import {TripService} from '../../services/trip.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class TripDialogComponent {
   constructor(public formService: FormService,
               private loadingService: LoadingService,
               private matDialogRef: MatDialogRef<TripDialogComponent>,
+              private snackbarService: SnackbarService,
               private tripService: TripService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.formGroup = new FormGroup({
@@ -55,6 +57,7 @@ export class TripDialogComponent {
     trip.schedule = 'test';
     await this.tripService.insertTrip(trip);
     this.loadingService.hide();
+    this.snackbarService.showSnackbar('Η εκδρομή καταχωρήθηκε με επιτυχία!');
     this.matDialogRef.close('success');
   }
 }

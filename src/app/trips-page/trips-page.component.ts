@@ -1,3 +1,4 @@
+import {BookingDialogComponent} from './dialogs/booking-dialog/booking-dialog.component';
 import {Component, OnInit} from '@angular/core';
 import {LoadingService} from '../shared/services/loading.service';
 import {LogoutDialogComponent} from './dialogs/logout-dialog/logout-dialog.component';
@@ -39,7 +40,7 @@ export class TripsPageComponent implements OnInit {
   }
 
   public openBookingDialog(trip: any): void {
-    const dialogReference = this.matDialog.open(TripDialogComponent, {
+    const dialogReference = this.matDialog.open(BookingDialogComponent, {
       data: {
         trip
       }
@@ -70,7 +71,11 @@ export class TripsPageComponent implements OnInit {
 
   private async updateTrips(): Promise<any> {
     this.loadingService.show();
-    this.trips = await this.tripService.getTrips();
+    if (this.showColumn('citizen')) {
+      this.trips = await this.tripService.getTrips();
+    } else {
+      this.trips = await this.tripService.getTravelAgencyTrips();
+    }
     this.loadingService.hide();
   }
 }

@@ -4,7 +4,9 @@ import {MaterialModule} from '../../../shared/material.module';
 import {NgModule} from '@angular/core';
 import {NgxMaskDirective} from 'ngx-mask';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SnackbarService} from '../../services/snackbar.service';
 import {TripDialogComponent} from './trip-dialog.component';
+import {TripService} from '../../services/trip.service';
 
 @NgModule({
   declarations: [TripDialogComponent],
@@ -14,7 +16,11 @@ import {TripDialogComponent} from './trip-dialog.component';
     NgxMaskDirective,
     ReactiveFormsModule
   ],
-  providers: [FormService]
+  providers: [
+    FormService,
+    SnackbarService,
+    TripService
+  ]
 })
 export class TripDialogModule {
 }

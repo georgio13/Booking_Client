@@ -2,9 +2,7 @@ import {DatabaseService} from '../../shared/services/database.service';
 import {Injectable} from '@angular/core';
 import {SessionStorageService} from '../../shared/services/session-storage.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TripService {
   private readonly serviceModel: string;
 
@@ -14,10 +12,18 @@ export class TripService {
     this.serviceModel = '';
   }
 
-  public async getTrips(): Promise<any> {
+  public async getTravelAgencyTrips(): Promise<any> {
     try {
       const user = JSON.parse(this.sessionStorageService.getObject('token'));
       return await this.databaseService.getRequest(`${this.serviceModel}${user.afm}/mytravelAgencyTrips`);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async getTrips(): Promise<any> {
+    try {
+      return await this.databaseService.getRequest(`${this.serviceModel}trips`);
     } catch (error) {
       throw error;
     }

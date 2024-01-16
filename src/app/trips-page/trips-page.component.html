@@ -1,7 +1,13 @@
 <div class="trips-container">
   <div class="title">Διαθέσιμες Εκδρομές</div>
 
-  <button class="add-button" color="primary" mat-flat-button (click)="openTripDialog()">Προσθήκη Εκδρομής</button>
+  <button *ngIf="showColumn('travel_agency')"
+          class="add-button"
+          color="primary"
+          mat-flat-button
+          (click)="openTripDialog()">
+    Προσθήκη Εκδρομής
+  </button>
 
   <table mat-table [dataSource]="trips">
     <ng-container matColumnDef="depLocation">
