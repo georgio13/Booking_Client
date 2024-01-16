@@ -65,7 +65,7 @@ export class TripsPageComponent implements OnInit {
   }
 
   public showColumn(role: string): boolean {
-    return this.user.role === role;
+    return this.user.userType === role;
   }
 
   private async updateTrips(): Promise<any> {
