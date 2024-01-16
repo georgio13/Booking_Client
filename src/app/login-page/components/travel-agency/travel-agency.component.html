@@ -1,7 +1,8 @@
 <form [formGroup]="formGroup" (keydown.enter)="register()">
   <mat-form-field>
     <mat-label>ΑΦΜ</mat-label>
-    <input autocomplete="username" formControlName="afm" matInput type="text"/>
+    <input #vat_number formControlName="afm" mask="000000000" matInput maxlength="9" type="text"/>
+    <mat-hint align="end">{{vat_number.value?.length || 0}}/9</mat-hint>
     <mat-error *ngIf="formService.isFormFieldValid('afm', formGroup)">
       {{ formService.setErrorMessage('afm', formGroup, 'vatNumber') }}
     </mat-error>
@@ -35,6 +36,6 @@
   </mat-form-field>
 </form>
 
-<button class="login-button" mat-button [disabled]="isFormInvalid()" (click)="register()">
+<button color="primary" class="login-button" mat-flat-button [disabled]="isFormInvalid()" (click)="register()">
   Εγγραφή
 </button>
