@@ -1,3 +1,4 @@
+import * as dayjs from 'dayjs';
 import {DatabaseService} from '../../shared/services/database.service';
 import {Injectable} from '@angular/core';
 
@@ -27,6 +28,8 @@ export class TripService {
 
   public async insertTrip(trip: any): Promise<any> {
     try {
+      trip.endDate = dayjs(trip.endDate).format('YYYY-MM-DD');
+      trip.startDate = dayjs(trip.startDate).format('YYYY-MM-DD');
       return await this.databaseService.postRequest(trip, `${this.serviceModel}/addTrip`);
     } catch (error) {
       throw error;
