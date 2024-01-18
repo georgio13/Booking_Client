@@ -14,16 +14,7 @@ export class DatabaseService {
   constructor(private httpClient: HttpClient,
               private router: Router,
               private sessionStorageService: SessionStorageService) {
-    // this.baseURL = `${environment.apiURL}/api`;
-    this.baseURL = `${environment.apiURL}`;
-  }
-
-  public async deleteRequest(url: string): Promise<any> {
-    try {
-      return await firstValueFrom(this.httpClient.delete(`${this.baseURL}/${url}`));
-    } catch (error) {
-      await this.logout(error);
-    }
+    this.baseURL = `${environment.apiURL}/api`;
   }
 
   public formatURL(query: any, url: string): string {
@@ -47,25 +38,9 @@ export class DatabaseService {
     }
   }
 
-  public async patchRequest(object: any, url: string): Promise<any> {
-    try {
-      return await firstValueFrom(this.httpClient.patch(`${this.baseURL}/${url}`, object));
-    } catch (error) {
-      await this.logout(error);
-    }
-  }
-
   public async postRequest(object: any, url: string): Promise<any> {
     try {
       return await firstValueFrom(this.httpClient.post(`${this.baseURL}/${url}`, object));
-    } catch (error) {
-      await this.logout(error);
-    }
-  }
-
-  public async putRequest(object: any, url: string): Promise<any> {
-    try {
-      return await firstValueFrom(this.httpClient.put(`${this.baseURL}/${url}`, object));
     } catch (error) {
       await this.logout(error);
     }
