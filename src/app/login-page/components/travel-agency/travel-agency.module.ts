@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {FormService} from '../../../trips-page/services/form.service';
+import {FormService} from '../../../shared/services/form.service';
 import {MaterialModule} from '../../../shared/material.module';
 import {NgModule} from '@angular/core';
 import {NgxMaskDirective} from 'ngx-mask';

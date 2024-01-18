@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormService} from '../../../trips-page/services/form.service';
+import {FormService} from '../../../shared/services/form.service';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {UserService} from '../../../shared/services/user.service';
 import {VatNumberValidators} from '../../../shared/services/vat-number.validators';
@@ -27,7 +27,10 @@ export class CitizenComponent {
       email: new FormControl('', [Validators.email, Validators.required]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.formService.passwordPattern)
+      ])
     });
   }
 

@@ -10,12 +10,12 @@
 
   <mat-form-field>
     <mat-label>Κωδικός</mat-label>
-    <input autocomplete="new-password" formControlName="password" matInput [type]="getPasswordType()"/>
+    <input formControlName="password" matInput [type]="getPasswordType()"/>
     <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
       <span class="{{getVisibilityIcon()}}"></span>
     </button>
     <mat-error *ngIf="formService.isFormFieldValid('password', formGroup)">
-      {{ formService.setErrorMessage('password', formGroup) }}
+      {{ formService.setErrorMessage('password', formGroup, 'password') }}
     </mat-error>
   </mat-form-field>
 

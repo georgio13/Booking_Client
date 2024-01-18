@@ -1,7 +1,7 @@
 import {BookingService} from '../../services/booking.service';
 import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormService} from '../../services/form.service';
+import {FormService} from '../../../shared/services/form.service';
 import {LoadingService} from '../../../shared/services/loading.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {SnackbarService} from '../../services/snackbar.service';
