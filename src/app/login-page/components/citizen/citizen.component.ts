@@ -23,7 +23,7 @@ export class CitizenComponent {
         Validators.minLength(9),
         Validators.required,
         this.vatNumberValidators.invalidVatNumber
-      ]),
+      ], this.vatNumberValidators.uniqueVatNumber()),
       email: new FormControl('', [Validators.email, Validators.required]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),

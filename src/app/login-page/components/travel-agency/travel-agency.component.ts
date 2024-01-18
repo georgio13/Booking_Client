@@ -23,7 +23,7 @@ export class TravelAgencyComponent {
         Validators.minLength(9),
         Validators.required,
         this.vatNumberValidators.invalidVatNumber
-      ]),
+      ], this.vatNumberValidators.uniqueVatNumber()),
       name: new FormControl('', Validators.required),
       owner: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)

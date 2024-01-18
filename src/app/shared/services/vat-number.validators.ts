@@ -1,6 +1,8 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {firstValueFrom} from 'rxjs';
 
 @Injectable()
 export class VatNumberValidators {
@@ -24,25 +26,15 @@ export class VatNumberValidators {
     }
   }
 
-  public uniqueVatNumber(vatNumber?: string): AsyncValidatorFn {
+  public uniqueVatNumber(): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          this.httpClient.get(`company/vat_number/${control.value}`).toPromise()
-            .then((companies: any) => {
-              if (vatNumber) {
-                if ((companies.length === 1 && companies[0].vat_number === vatNumber) || companies.length === 0) {
-                  resolve(null);
-                } else {
-                  resolve({uniqueVatNumber: true});
-                }
-              } else if (companies.length > 0) {
-                resolve({uniqueVatNumber: true});
-              } else {
-                resolve(null);
-              }
-            });
-        }, 1000);
+      return new Promise(async (resolve) => {
+        try {
+          await firstValueFrom(this.httpClient.get(`${environment.apiURL}/api/user/${control.value}`));
+          resolve({uniqueVatNumber: true});
+        } catch (error) {
+          resolve(null);
+        }
       });
     };
   }
