@@ -49,6 +49,7 @@ export class TravelAgencyComponent {
     this.loadingService.show();
     await this.userService.registerTravelAgency(this.formGroup.value);
     this.loadingService.hide();
+    window.location.reload();
   }
 
   public toggleVisibility($event: MouseEvent): void {

@@ -50,6 +50,7 @@ export class CitizenComponent {
     this.loadingService.show();
     await this.userService.registerCitizen(this.formGroup.value);
     this.loadingService.hide();
+    window.location.reload();
   }
 
   public toggleVisibility($event: MouseEvent): void {
