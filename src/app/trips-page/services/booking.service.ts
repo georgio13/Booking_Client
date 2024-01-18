@@ -1,19 +1,19 @@
 import {DatabaseService} from '../../shared/services/database.service';
 import {Injectable} from '@angular/core';
-import {SessionStorageService} from '../../shared/services/session-storage.service';
+import {UserService} from '../../shared/services/user.service';
 
 @Injectable()
 export class BookingService {
   private readonly serviceModel: string;
 
   constructor(private databaseService: DatabaseService,
-              private sessionStorageService: SessionStorageService) {
+              private userService: UserService) {
     this.serviceModel = 'booking';
   }
 
   public async insertBooking(booking: any): Promise<any> {
     try {
-      const user = JSON.parse(this.sessionStorageService.getObject('token'));
+      const user = await this.userService.getMe();
       const url = this.databaseService.formatURL(booking, `${this.serviceModel}/${user.afm}`);
       return await this.databaseService.postRequest({}, url);
     } catch (error) {

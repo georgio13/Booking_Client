@@ -1,13 +1,13 @@
+import * as dayjs from 'dayjs';
 import {BookingDialogComponent} from './dialogs/booking-dialog/booking-dialog.component';
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {LoadingService} from '../shared/services/loading.service';
 import {LogoutDialogComponent} from './dialogs/logout-dialog/logout-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {SessionStorageService} from '../shared/services/session-storage.service';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import * as dayjs from 'dayjs';
+import {UserService} from '../shared/services/user.service';
 
 @Component({
   styleUrls: ['./trips-page.component.scss'],
@@ -19,12 +19,12 @@ export class TripsPageComponent implements OnInit {
   public maximumDate: Date;
   public minimumDate: Date;
   public trips: any[];
-  private user: any;
+  public user: any;
 
   constructor(private loadingService: LoadingService,
               private matDialog: MatDialog,
-              private sessionStorageService: SessionStorageService,
-              private tripService: TripService) {
+              private tripService: TripService,
+              private userService: UserService) {
     this.displayedColumns = [
       'depLocation',
       'destLocation',
@@ -46,15 +46,15 @@ export class TripsPageComponent implements OnInit {
     this.formGroup.get('startdt').valueChanges.subscribe((value) => {
       this.minimumDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
     });
-    this.user = JSON.parse(this.sessionStorageService.getObject('token'));
+  }
+
+  public async ngOnInit(): Promise<any> {
+    this.user = await this.userService.getMe();
     if (this.showColumn('citizen')) {
       this.displayedColumns.push('travelAgency', 'actions');
     } else if (this.showColumn('travel_agency')) {
       this.displayedColumns.push('bookedSeats', 'maxNumOfParticipants');
     }
-  }
-
-  public async ngOnInit(): Promise<any> {
     await this.updateTrips();
   }
 
@@ -91,7 +91,7 @@ export class TripsPageComponent implements OnInit {
   }
 
   public showColumn(role: string): boolean {
-    return this.user.userType === role;
+    return this.user?.userType === role;
   }
 
   private async updateTrips(): Promise<any> {

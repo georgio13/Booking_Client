@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 })
 export class UserService {
   private readonly serviceModel: string;
+  private user: any;
 
   constructor(private databaseService: DatabaseService) {
     this.serviceModel = 'user';
@@ -14,6 +15,18 @@ export class UserService {
   public async login(user: any): Promise<any> {
     try {
       return await this.databaseService.postRequest(user, `${this.serviceModel}/login`);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async getMe(): Promise<any> {
+    try {
+      if (this.user) {
+        return this.user;
+      }
+      this.user = await this.databaseService.getRequest(`${this.serviceModel}/me`);
+      return this.user;
     } catch (error) {
       throw error;
     }

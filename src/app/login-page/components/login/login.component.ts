@@ -43,7 +43,7 @@ export class LoginComponent {
       this.loadingService.show();
       this.errorMessage = '';
       const loginData = await this.userService.login(this.formGroup.value);
-      this.sessionStorageService.setObject('token', JSON.stringify(loginData));
+      this.sessionStorageService.setObject('token', loginData.message);
       await this.router.navigate(['trips']);
     } catch (error) {
       this.errorMessage = error.error.message;

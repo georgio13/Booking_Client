@@ -1,20 +1,17 @@
 import {DatabaseService} from '../../shared/services/database.service';
 import {Injectable} from '@angular/core';
-import {SessionStorageService} from '../../shared/services/session-storage.service';
 
 @Injectable()
 export class TripService {
   private readonly serviceModel: string;
 
-  constructor(private databaseService: DatabaseService,
-              private sessionStorageService: SessionStorageService) {
+  constructor(private databaseService: DatabaseService) {
     this.serviceModel = 'trip';
   }
 
   public async getTravelAgencyTrips(): Promise<any> {
     try {
-      const user = JSON.parse(this.sessionStorageService.getObject('token'));
-      return await this.databaseService.getRequest(`${this.serviceModel}/${user.afm}/mytravelAgencyTrips`);
+      return await this.databaseService.getRequest(`${this.serviceModel}/travelAgencyTrips`);
     } catch (error) {
       throw error;
     }
@@ -30,9 +27,7 @@ export class TripService {
 
   public async insertTrip(trip: any): Promise<any> {
     try {
-      const user = JSON.parse(this.sessionStorageService.getObject('token'));
-      trip.travelAgency = user;
-      return await this.databaseService.postRequest(trip, `${this.serviceModel}/${user.afm}/addTrip`);
+      return await this.databaseService.postRequest(trip, `${this.serviceModel}/addTrip`);
     } catch (error) {
       throw error;
     }
@@ -40,13 +35,12 @@ export class TripService {
 
   public async searchTrips(query: any): Promise<any> {
     try {
-      const user = JSON.parse(this.sessionStorageService.getObject('token'));
       for (const key in query) {
         if (query[key] === '') {
           delete query[key];
         }
       }
-      const url = this.databaseService.formatURL(query, `${this.serviceModel}/${user.afm}/search`);
+      const url = this.databaseService.formatURL(query, `${this.serviceModel}/search`);
       return await this.databaseService.getRequest(url);
     } catch (error) {
       throw error;
