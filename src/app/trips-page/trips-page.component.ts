@@ -5,6 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {LoadingService} from '../shared/services/loading.service';
 import {LogoutDialogComponent} from './dialogs/logout-dialog/logout-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ScheduleDialogComponent} from './dialogs/schedule-dialog/schedule-dialog.component';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
 import {UserService} from '../shared/services/user.service';
@@ -78,6 +79,14 @@ export class TripsPageComponent implements OnInit {
 
   public async openLogoutDialog(): Promise<any> {
     this.matDialog.open(LogoutDialogComponent);
+  }
+
+  public openScheduleDialog(trip: any): void {
+    this.matDialog.open(ScheduleDialogComponent, {
+      data: {
+        trip
+      }
+    });
   }
 
   public openTripDialog(): void {

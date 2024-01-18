@@ -4,12 +4,13 @@ import {LayoutGuard} from '../guards/layout.guard';
 import {LogoutDialogModule} from './dialogs/logout-dialog/logout-dialog.module';
 import {MaterialModule} from '../shared/material.module';
 import {NgModule} from '@angular/core';
+import {NgxMaskDirective} from 'ngx-mask';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ScheduleDialogModule} from './dialogs/schedule-dialog/schedule-dialog.module';
 import {TripDialogModule} from './dialogs/trip-dialog/trip-dialog.module';
 import {TripService} from './services/trip.service';
 import {TripsPageComponent} from './trips-page.component';
 import {TripsPageRoutingModule} from './trips-page-routing.module';
-import {NgxMaskDirective} from 'ngx-mask';
 
 @NgModule({
   declarations: [TripsPageComponent],
@@ -18,10 +19,11 @@ import {NgxMaskDirective} from 'ngx-mask';
     CommonModule,
     LogoutDialogModule,
     MaterialModule,
+    NgxMaskDirective,
     ReactiveFormsModule,
+    ScheduleDialogModule,
     TripDialogModule,
-    TripsPageRoutingModule,
-    NgxMaskDirective
+    TripsPageRoutingModule
   ],
   providers: [
     LayoutGuard,

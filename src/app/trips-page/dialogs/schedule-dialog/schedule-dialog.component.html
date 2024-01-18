@@ -1,0 +1,17 @@
+<div mat-dialog-title>
+  <span>Πρόγραμμα Εκδρομής</span>
+
+  <span>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </span>
+</div>
+
+<mat-dialog-content>
+  <div [innerHTML]="data.schedule"></div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Κλείσιμο</button>
+</mat-dialog-actions>
