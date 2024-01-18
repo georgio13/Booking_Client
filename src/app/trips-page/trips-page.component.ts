@@ -9,7 +9,6 @@ import {ScheduleDialogComponent} from './dialogs/schedule-dialog/schedule-dialog
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
 import {UserService} from '../shared/services/user.service';
-import {elementAt} from 'rxjs';
 
 @Component({
   styleUrls: ['./trips-page.component.scss'],
@@ -117,6 +116,4 @@ export class TripsPageComponent implements OnInit {
     }
     this.loadingService.hide();
   }
-
-  protected readonly elementAt = elementAt;
 }
