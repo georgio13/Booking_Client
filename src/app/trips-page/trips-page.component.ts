@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {TripDialogComponent} from './dialogs/trip-dialog/trip-dialog.component';
 import {TripService} from './services/trip.service';
 import {UserService} from '../shared/services/user.service';
+import {elementAt} from 'rxjs';
 
 @Component({
   styleUrls: ['./trips-page.component.scss'],
@@ -58,6 +59,10 @@ export class TripsPageComponent implements OnInit {
     await this.updateTrips();
   }
 
+  public disableBookingButton(trip: any): boolean {
+    return trip.availableSeats === 0 || dayjs(trip.startDate).isBefore(dayjs());
+  }
+
   public openBookingDialog(trip: any): void {
     const dialogReference = this.matDialog.open(BookingDialogComponent, {
       data: {
@@ -103,4 +108,6 @@ export class TripsPageComponent implements OnInit {
     }
     this.loadingService.hide();
   }
+
+  protected readonly elementAt = elementAt;
 }

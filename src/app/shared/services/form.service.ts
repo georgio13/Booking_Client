@@ -13,7 +13,7 @@ export class FormService {
     return formGroup.get(formField).touched && formGroup.get(formField).invalid;
   }
 
-  public setErrorMessage(formField: string, formGroup: FormGroup, type?: string): string {
+  public setErrorMessage(formField: string, formGroup: FormGroup, type?: string, value?: any): string {
     const errors = formGroup.get(formField).errors;
     switch (type) {
       case 'email':
@@ -47,6 +47,17 @@ export class FormService {
             '- Να έχει τουλάχιστον έναν πεζό χαρακτήρα\n' +
             '- Να έχει τουλάχιστον έναν αριθμό\n' +
             '- Να έχει τουλάχιστον έναν ειδικό χαρακτήρα';
+        }
+        break;
+      case 'seats':
+        if (errors.required) {
+          return 'Υποχρεωτικό πεδίο.';
+        }
+        if (errors.max) {
+          return `Πρέπει να είναι μικρότερο από ${value}.`;
+        }
+        if (errors.min) {
+          return 'Πρέπει να είναι μεγαλύτερο από 0.';
         }
         break;
       case 'vatNumber':

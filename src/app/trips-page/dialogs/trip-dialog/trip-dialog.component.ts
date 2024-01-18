@@ -16,7 +16,8 @@ export class TripDialogComponent {
   public formGroup: FormGroup;
   public editor: any;
   public maximumDate: Date;
-  public minimumDate: Date;
+  public minimumEndDate: Date;
+  public minimumStartDate: Date;
 
   constructor(public formService: FormService,
               private loadingService: LoadingService,
@@ -43,8 +44,9 @@ export class TripDialogComponent {
       }, 0);
     });
     this.formGroup.get('startDate').valueChanges.subscribe((value) => {
-      this.minimumDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
+      this.minimumEndDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
     });
+    this.minimumStartDate = new Date(dayjs().add(1, 'day').format('YYYY-MM-DD'));
   }
 
   public closeDialog(): void {

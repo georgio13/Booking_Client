@@ -40,6 +40,10 @@ export class UserService {
     }
   }
 
+  public resetUser(): void {
+    this.user = null;
+  }
+
   public async registerTravelAgency(user: any): Promise<any> {
     try {
       return await this.databaseService.postRequest(user, `${this.serviceModel}/register/travel-agency`);

@@ -11,6 +11,7 @@ import {SnackbarService} from '../../services/snackbar.service';
 })
 export class BookingDialogComponent {
   public formGroup: FormGroup;
+  public trip: any;
 
   constructor(private bookingService: BookingService,
               public formService: FormService,
@@ -18,10 +19,11 @@ export class BookingDialogComponent {
               private matDialogRef: MatDialogRef<BookingDialogComponent>,
               private snackbarService: SnackbarService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.trip = this.data.trip;
     this.formGroup = new FormGroup({
       numOfPeopleBooked: new FormControl('', [
         Validators.required,
-        Validators.max(2147483647),
+        Validators.max(this.trip.availableSeats),
         Validators.min(0)
       ])
     });
@@ -38,7 +40,7 @@ export class BookingDialogComponent {
   public async submitBooking(): Promise<any> {
     this.loadingService.show();
     let booking = this.formGroup.value;
-    booking.tripID = this.data.trip.id;
+    booking.tripID = this.trip.id;
     await this.bookingService.insertBooking(booking);
     this.loadingService.hide();
     this.snackbarService.showSnackbar('Η κράτηση ολοκληρώθηκε με επιτυχία!');

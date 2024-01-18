@@ -85,7 +85,11 @@
     <ng-container *ngIf="showColumn('citizen')" matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Ενέργειες</th>
       <td mat-cell *matCellDef="let row;">
-        <button color="primary" mat-icon-button matTooltip="Κράτηση" (click)="openBookingDialog(row)">
+        <button color="primary"
+                [disabled]="disableBookingButton(row)"
+                mat-icon-button
+                matTooltip="Κράτηση"
+                (click)="openBookingDialog(row)">
           <mat-icon>card_travel</mat-icon>
         </button>
       </td>
