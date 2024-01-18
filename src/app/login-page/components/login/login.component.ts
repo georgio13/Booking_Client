@@ -39,16 +39,17 @@ export class LoginComponent {
   }
 
   public async login(): Promise<any> {
-    this.loadingService.show();
-    this.errorMessage = '';
-    const loginData = await this.userService.login(this.formGroup.value);
-    if (loginData) {
+    try {
+      this.loadingService.show();
+      this.errorMessage = '';
+      const loginData = await this.userService.login(this.formGroup.value);
       this.sessionStorageService.setObject('token', JSON.stringify(loginData));
       await this.router.navigate(['trips']);
-    } else {
-      this.errorMessage = 'Δεν υπάρχει ο χρήστης';
+    } catch (error) {
+      this.errorMessage = error.error.message;
+    } finally {
+      this.loadingService.hide();
     }
-    this.loadingService.hide();
   }
 
   public toggleVisibility($event: MouseEvent): void {
