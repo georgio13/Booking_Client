@@ -8,14 +8,13 @@ export class BookingService {
 
   constructor(private databaseService: DatabaseService,
               private sessionStorageService: SessionStorageService) {
-    // this.serviceModel = 'user';
-    this.serviceModel = '';
+    this.serviceModel = 'booking';
   }
 
   public async insertBooking(booking: any): Promise<any> {
     try {
       const user = JSON.parse(this.sessionStorageService.getObject('token'));
-      const url = this.databaseService.formatURL(booking, `${this.serviceModel}${user.afm}/booking`);
+      const url = this.databaseService.formatURL(booking, `${this.serviceModel}/${user.afm}`);
       return await this.databaseService.postRequest({}, url);
     } catch (error) {
       throw error;
