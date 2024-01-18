@@ -39,7 +39,7 @@ export class CitizenComponent {
   }
 
   public getVisibilityIcon(): string {
-    return this.hidePassword ? 'icon-visibility_off' : 'icon-visibility';
+    return this.hidePassword ? 'visibility_off' : 'visibility';
   }
 
   public isFormInvalid(): boolean {

@@ -121,7 +121,12 @@ html {
   color: var(--swatch2);
 }
 
+mat-hint {
+  color: var(--swatch2);
+}
+
 .mat-icon {
+  color: var(--swatch3);
   vertical-align: middle;
 }
 
@@ -161,8 +166,8 @@ html {
 
 .mat-expansion-panel {
   background-color: var(--swatch7) !important;
-  color: var(--swatch2) !important;
   box-shadow: none !important;
+  color: var(--swatch2) !important;
 }
 
 .mat-expansion-panel-header {
@@ -435,8 +440,4 @@ html {
 
 .mat-mdc-tab-header-pagination-chevron {
   border-color: var(--swatch2) !important;
-}
-
-mat-hint {
-  color: var(--swatch2);
 }

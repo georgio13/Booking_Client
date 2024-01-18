@@ -12,7 +12,7 @@
     <mat-label>Κωδικός</mat-label>
     <input formControlName="password" matInput [type]="getPasswordType()"/>
     <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
-      <span class="{{getVisibilityIcon()}}"></span>
+      <mat-icon>{{getVisibilityIcon()}}</mat-icon>
     </button>
     <mat-error *ngIf="formService.isFormFieldValid('password', formGroup)">
       {{ formService.setErrorMessage('password', formGroup, 'password') }}

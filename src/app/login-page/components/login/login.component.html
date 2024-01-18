@@ -8,7 +8,7 @@
     <mat-label>Κωδικός Χρήστη</mat-label>
     <input autocomplete="new-password" formControlName="password" matInput [type]="getPasswordType()"/>
     <button mat-icon-button matSuffix (mousedown)="toggleVisibility($event)">
-      <span class="{{getVisibilityIcon()}}"></span>
+      <mat-icon>{{getVisibilityIcon()}}</mat-icon>
     </button>
   </mat-form-field>
 </form>
