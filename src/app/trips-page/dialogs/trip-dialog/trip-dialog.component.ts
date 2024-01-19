@@ -27,10 +27,10 @@ export class TripDialogComponent {
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.editor = ClassicEditor;
     this.formGroup = new FormGroup({
-      depLocation: new FormControl('', Validators.required),
-      destLocation: new FormControl('', Validators.required),
+      departureLocation: new FormControl('', Validators.required),
+      destinationLocation: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
-      maxNumOfParticipants: new FormControl('', [
+      maximumSeats: new FormControl('', [
         Validators.required,
         Validators.max(2147483647),
         Validators.min(0)

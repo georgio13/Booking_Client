@@ -42,14 +42,14 @@
   </div>
 
   <table *ngIf="user" mat-table [dataSource]="trips">
-    <ng-container matColumnDef="depLocation">
+    <ng-container matColumnDef="departureLocation">
       <th mat-header-cell *matHeaderCellDef>Αναχώρηση Τόπος</th>
-      <td mat-cell *matCellDef="let element">{{ element.depLocation }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.departureLocation }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="destLocation">
+    <ng-container matColumnDef="destinationLocation">
       <th mat-header-cell *matHeaderCellDef>Προορισμός Τόπος</th>
-      <td mat-cell *matCellDef="let element">{{ element.destLocation }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.destinationLocation }}</td>
     </ng-container>
 
     <ng-container matColumnDef="startDate">
@@ -72,9 +72,9 @@
       <td mat-cell *matCellDef="let element">{{ element.bookedSeats }}</td>
     </ng-container>
 
-    <ng-container *ngIf="showColumn('travel_agency')" matColumnDef="maxNumOfParticipants">
+    <ng-container *ngIf="showColumn('travel_agency')" matColumnDef="maximumSeats">
       <th mat-header-cell *matHeaderCellDef>Μέγιστος Αριθμός Συμμετοχών</th>
-      <td mat-cell *matCellDef="let element">{{ element.maxNumOfParticipants }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.maximumSeats }}</td>
     </ng-container>
 
     <ng-container *ngIf="showColumn('citizen')" matColumnDef="travelAgency">

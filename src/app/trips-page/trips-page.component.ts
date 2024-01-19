@@ -27,8 +27,8 @@ export class TripsPageComponent implements OnInit {
               private tripService: TripService,
               private userService: UserService) {
     this.displayedColumns = [
-      'depLocation',
-      'destLocation',
+      'departureLocation',
+      'destinationLocation',
       'startDate',
       'endDate',
       'availableSeats'
@@ -54,7 +54,7 @@ export class TripsPageComponent implements OnInit {
     if (this.showColumn('citizen')) {
       this.displayedColumns.push('travelAgency', 'actions');
     } else if (this.showColumn('travel_agency')) {
-      this.displayedColumns.push('bookedSeats', 'maxNumOfParticipants');
+      this.displayedColumns.push('bookedSeats', 'maximumSeats');
     }
     await this.updateTrips();
   }
