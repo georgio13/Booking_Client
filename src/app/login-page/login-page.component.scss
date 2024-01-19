@@ -49,8 +49,8 @@
   }
 }
 
-mat-icon {
-  color: var(--swatch2);
+:host ::ng-deep .mat-icon {
+  color: var(--swatch3);
 }
 
 @media only screen and (max-width: 768px) {
