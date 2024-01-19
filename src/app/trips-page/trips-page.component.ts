@@ -97,19 +97,13 @@ export class TripsPageComponent implements OnInit {
     });
   }
 
-  public async searchTrips(): Promise<any> {
-    this.loadingService.show();
-    this.trips = await this.tripService.searchTrips(this.formGroup.value);
-    this.loadingService.hide();
-  }
-
   public showColumn(role: string): boolean {
     return this.user?.userType === role;
   }
 
-  private async updateTrips(): Promise<any> {
+  public async updateTrips(): Promise<any> {
     this.loadingService.show();
-    this.trips = await this.tripService.getTrips();
+    this.trips = await this.tripService.getTrips(this.formGroup.value);
     this.loadingService.hide();
   }
 }
