@@ -10,17 +10,9 @@ export class TripService {
     this.serviceModel = 'trip';
   }
 
-  public async getTravelAgencyTrips(): Promise<any> {
-    try {
-      return await this.databaseService.getRequest(`${this.serviceModel}/travelAgencyTrips`);
-    } catch (error) {
-      throw error;
-    }
-  }
-
   public async getTrips(): Promise<any> {
     try {
-      return await this.databaseService.getRequest(`${this.serviceModel}/trips`);
+      return await this.databaseService.getRequest(this.serviceModel);
     } catch (error) {
       throw error;
     }

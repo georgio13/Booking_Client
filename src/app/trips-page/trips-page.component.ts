@@ -109,11 +109,7 @@ export class TripsPageComponent implements OnInit {
 
   private async updateTrips(): Promise<any> {
     this.loadingService.show();
-    if (this.showColumn('citizen')) {
-      this.trips = await this.tripService.getTrips();
-    } else {
-      this.trips = await this.tripService.getTravelAgencyTrips();
-    }
+    this.trips = await this.tripService.getTrips();
     this.loadingService.hide();
   }
 }
