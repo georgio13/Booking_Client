@@ -35,6 +35,12 @@ export class TripService {
           delete query[key];
         }
       }
+      if (query.endDate) {
+        query.endDate = dayjs(query.endDate).format('YYYY-MM-DD');
+      }
+      if (query.startDate) {
+        query.startDate = dayjs(query.startDate).format('YYYY-MM-DD');
+      }
       const url = this.databaseService.formatURL(query, `${this.serviceModel}/search`);
       return await this.databaseService.getRequest(url);
     } catch (error) {

@@ -13,24 +13,24 @@
     <form [formGroup]="formGroup">
       <mat-form-field>
         <mat-label>Αναχώρηση Τόπος</mat-label>
-        <input formControlName="depLoc" matInput type="text"/>
+        <input formControlName="departureLocation" matInput type="text"/>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Προορισμός Τόπος</mat-label>
-        <input formControlName="destLoc" matInput type="text"/>
+        <input formControlName="destinationLocation" matInput type="text"/>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Ημερομηνία Έναρξης</mat-label>
-        <input formControlName="startdt" matInput [matDatepicker]="picker1" [max]="maximumDate" readonly>
+        <input formControlName="startDate" matInput [matDatepicker]="picker1" [max]="maximumDate" readonly>
         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Ημερομηνία Λήξης</mat-label>
-        <input formControlName="enddt" matInput [matDatepicker]="picker2" [min]="minimumDate" readonly>
+        <input formControlName="endDate" matInput [matDatepicker]="picker2" [min]="minimumDate" readonly>
         <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>

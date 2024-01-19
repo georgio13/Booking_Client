@@ -34,17 +34,17 @@ export class TripsPageComponent implements OnInit {
       'availableSeats'
     ];
     this.formGroup = new FormGroup({
-      depLoc: new FormControl(''),
-      destLoc: new FormControl(''),
-      enddt: new FormControl(''),
-      startdt: new FormControl('')
+      departureLocation: new FormControl(''),
+      destinationLocation: new FormControl(''),
+      endDate: new FormControl(''),
+      startDate: new FormControl('')
     });
-    this.formGroup.get('enddt').valueChanges.subscribe((value) => {
+    this.formGroup.get('endDate').valueChanges.subscribe((value) => {
       setTimeout(() => {
         this.maximumDate = new Date(dayjs(value).subtract(1, 'day').format('YYYY-MM-DD'));
       }, 0);
     });
-    this.formGroup.get('startdt').valueChanges.subscribe((value) => {
+    this.formGroup.get('startDate').valueChanges.subscribe((value) => {
       this.minimumDate = new Date(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
     });
   }
