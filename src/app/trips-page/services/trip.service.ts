@@ -30,7 +30,7 @@ export class TripService {
     try {
       trip.endDate = dayjs(trip.endDate).format('YYYY-MM-DD');
       trip.startDate = dayjs(trip.startDate).format('YYYY-MM-DD');
-      return await this.databaseService.postRequest(trip, `${this.serviceModel}/addTrip`);
+      return await this.databaseService.postRequest(trip, this.serviceModel);
     } catch (error) {
       throw error;
     }
