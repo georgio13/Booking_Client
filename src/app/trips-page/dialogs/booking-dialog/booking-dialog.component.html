@@ -12,9 +12,9 @@
   <form [formGroup]="formGroup">
     <mat-form-field>
       <mat-label>Αριθμός Συμμετοχών</mat-label>
-      <input formControlName="numOfPeopleBooked" mask="9*" matInput type="text"/>
-      <mat-error *ngIf="formService.isFormFieldValid('numOfPeopleBooked', formGroup)">
-        {{ formService.setErrorMessage('numOfPeopleBooked', formGroup, 'seats', trip.availableSeats + 1) }}
+      <input formControlName="seats" mask="9*" matInput type="text"/>
+      <mat-error *ngIf="formService.isFormFieldValid('seats', formGroup)">
+        {{ formService.setErrorMessage('seats', formGroup, 'seats', trip.availableSeats + 1) }}
       </mat-error>
     </mat-form-field>
   </form>

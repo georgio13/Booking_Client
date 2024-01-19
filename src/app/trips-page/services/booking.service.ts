@@ -9,10 +9,17 @@ export class BookingService {
     this.serviceModel = 'booking';
   }
 
+  public async getBookings(): Promise<any> {
+    try {
+      return await this.databaseService.getRequest(this.serviceModel);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public async insertBooking(booking: any): Promise<any> {
     try {
-      const url = this.databaseService.formatURL(booking, this.serviceModel);
-      return await this.databaseService.postRequest({}, url);
+      return await this.databaseService.postRequest(booking, this.serviceModel);
     } catch (error) {
       throw error;
     }

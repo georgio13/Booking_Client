@@ -21,7 +21,7 @@ export class BookingDialogComponent {
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.trip = this.data.trip;
     this.formGroup = new FormGroup({
-      numOfPeopleBooked: new FormControl('', [
+      seats: new FormControl('', [
         Validators.required,
         Validators.max(this.trip.availableSeats),
         Validators.min(0)
