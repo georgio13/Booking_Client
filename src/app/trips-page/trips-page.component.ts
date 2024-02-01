@@ -59,6 +59,14 @@ export class TripsPageComponent implements OnInit {
     await this.updateTrips();
   }
 
+  public clearDateFrom(): void {
+    this.formGroup.get('startDate').setValue('');
+  }
+
+  public clearDateTo(): void {
+    this.formGroup.get('endDate').setValue('');
+  }
+
   public disableBookingButton(trip: any): boolean {
     return trip.availableSeats === 0 || dayjs(trip.startDate).isBefore(dayjs());
   }
